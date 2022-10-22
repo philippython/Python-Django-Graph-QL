@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from starlette_graphene3 import GraphQLApp
+from starlette_graphene3 import GraphQLApp, make_graphiql_handler
+from starlette.applications import Starlette
 import graphene
 
 class Calculator(graphene.ObjectType):
@@ -12,14 +13,6 @@ class Calculator(graphene.ObjectType):
     def resolve_add(self, info):
         return "this is addition"
 
-app = FastAPI()
-app.add_route("/", GraphQLApp(schema=graphene.Schema(query=Calculator)))
-
-
-# How are you doing?
-
-# I hope you're fine, Have you started your exams 
-
-# I wish you best of luck
-
-# i wouldn't like to disturb with texts but i also can't help it not to check up on you :)
+app = Starlette()
+schema=graphene.Schema(query=Calculator)
+app.mount("/", GraphQLApp(schema, on_get=make_graphiql_handler()))  # Graphiql IDE
