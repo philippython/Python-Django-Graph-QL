@@ -13,4 +13,4 @@ class Course(graphene.ObjectType):
         return dur
 
 app = Starlette()
-app.mount("/course", schema=graphene.Schema(GraphQLApp(query=Course)), on_get=make_graphiql_handler())
+app.mount("/course", GraphQLApp(schema=graphene.Schema(query=Course), on_get=make_graphiql_handler()))
