@@ -33,3 +33,4 @@ class Person(ObjectType):
 app = Starlette()
 schema = Schema(query=Person)
 app.mount("/students", GraphQLApp(schema, on_get=make_graphiql_handler()))
+
