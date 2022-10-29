@@ -8,5 +8,6 @@ app['SECRET_KEY'] = os.getenv("SECRET_KEY")
 def index():
     return jsonify({"success": "HelloWorld!"})
 
+
 if __name__ == "__main__":
     app.run(debug=True)
