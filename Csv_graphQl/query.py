@@ -1,8 +1,8 @@
 from Csv_graphQl.mapping import Employee
 from graphene import ObjectType, List,Schema, GraphQLApp
 from starlette_graphene3 import Starlette, make_graphiql_handler
-from mapping import Employee
-from data import read_file
+from .mapping import Employee
+from .data import read_file
 
 class Query(ObjectType):
     employee= List(Employee)
