@@ -1,7 +1,7 @@
 from webbrowser import Grail
 import graphene
 from starlette_graphene3 import GraphQLApp, make_graphiql_handler
-from starlette_graphene3.applications import Starlette
+from starlette.applications import Starlette
 from graphene import ObjectType , String , Int, List , Schema 
 
 data = [
@@ -33,3 +33,4 @@ class Person(ObjectType):
 app = Starlette()
 schema = Schema(query=Person)
 app.mount("/students", GraphQLApp(schema, on_get=make_graphiql_handler()))
+
