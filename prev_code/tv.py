@@ -65,8 +65,8 @@ class TV:
 
 # Instance of TV class
 tv = TV()
-tv.channel = 121
-tv.volume =12
+tv.channel = 111
+tv.volume = 3
 tv.volume
 tv.channel
 # Method operations on the instance
