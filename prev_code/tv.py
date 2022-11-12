@@ -70,3 +70,6 @@ tv.volume = 3
 tv.volume
 tv.channel
 # Method operations on the instance
+
+
+print("the {} bright {}".format("life", "fuck"))
