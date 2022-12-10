@@ -6,13 +6,36 @@ class player(graphene.Interface):
     name = graphene.String()
     country = graphene.String()
 
-class footballplayer(graphene.ObjectType):
+class Footballplayer(graphene.ObjectType):
     class Meta:
-        interface = (player, )
+        interfaces = (player, )
     position = graphene.Int()
 
 
 class Cricketplayer(graphene.ObjectType):
     class Meta:
-        interface = (player, )
+        interfaces = (player, )
     battlingorder = graphene.Int()
+
+class query(graphene.ObjectType):
+    fplayer = graphene.Field(Footballplayer)
+    cplayer = graphene.Field(Cricketplayer)
+
+    def resolve_fplayer(self, info):
+        return {
+            "name" : "messi",
+            "country" : "argentina",
+            "position": 9
+        }
+
+    def resolve_cplayer(self, info):
+        return {
+            "name" : "Shubham",
+            "country" : "india",
+            "battlingorder" : 10
+        }
+
+
+app = Starlette()
+schema = graphene.Schema(query=query)
+app.mount("/interface", GraphQLApp(schema=schema, on_get=make_graphiql_handler()))
