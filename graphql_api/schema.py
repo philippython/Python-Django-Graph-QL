@@ -28,4 +28,4 @@ class Query(ObjectType):
 
 schema = Schema(query=Query)
 
-print(schema.execute("{allPeople{email}}"))
+print(schema.execute("{allPeople{email lastName}}"))
