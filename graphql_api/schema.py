@@ -1,4 +1,6 @@
 from graphene import ObjectType, String , Int, List, Schema
+from starlette_graphene3 import GraphQLApp , make_graphiql_handler
+from starlette.applications import Starlette
 from models import data
 
 class PersonType(ObjectType):
@@ -27,5 +29,5 @@ class Query(ObjectType):
 
 
 schema = Schema(query=Query)
-
-print(schema.execute("{allPeople{email lastName}}"))
+app = Starlette()
+app.mount("/all_people", GraphQLApp(schema=schema, on_get=make_graphiql_handler()))
