@@ -1,6 +1,7 @@
 from graphene import ObjectType, String , Int, List, Schema
 from starlette_graphene3 import GraphQLApp , make_graphiql_handler
 from starlette.applications import Starlette
+from fastapi import FastAPI
 from models import data
 
 class PersonType(ObjectType):
@@ -29,5 +30,10 @@ class Query(ObjectType):
 
 
 schema = Schema(query=Query)
-app = Starlette()
-app.mount("/all_people", GraphQLApp(schema=schema, on_get=make_graphiql_handler()))
+app = FastAPI()
+
+@app.get('/')
+async def index():
+    return {"Message": "Hello world"}
+# app = Starlette()
+# app.mount("/all_people", GraphQLApp(schema=schema, on_get=make_graphiql_handler()))
