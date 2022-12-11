@@ -1,6 +1,4 @@
 from graphene import ObjectType, String , Int, List, Schema
-from starlette_graphene3 import GraphQLApp , make_graphiql_handler
-from starlette.applications import Starlette
 from models import data
 
 class PersonType(ObjectType):
