@@ -1,4 +1,4 @@
-from graphene import ObjectType, String , Int, List, Schema
+from graphene import ObjectType, String , Int, List, Field, Schema
 from models import data
 
 class PersonType(ObjectType):
@@ -21,9 +21,12 @@ class PersonType(ObjectType):
 
 class Query(ObjectType):
     all_people = List(PersonType)
+    person = Field(PersonType, key=Int())
 
     def resolve_all_people(root, info):
         return  data.values()
 
+    def resolve_person(root, info, key):
+        return data.get(key, None)
 
 schema = Schema(query=Query)
